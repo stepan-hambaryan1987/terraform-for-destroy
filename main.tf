@@ -58,17 +58,27 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   tags = ["ssh"]
-
   metadata = {
-    startup-script = <<-EOT
-      #!/bin/bash
-      apt-get update
-      apt-get install -y nginx
-      systemctl enable nginx
-      systemctl start nginx
-      echo "barev im sireli Arevikin, es qez shat em sirum, du im hrashqn es $(hostname)" > /var/www/html/index.html
-    EOT
-  }
+  startup-script = <<-EOT
+    #!/bin/bash
+    apt-get update
+    apt-get install -y nginx
+    systemctl enable nginx
+    systemctl start nginx
+
+    cat <<EOF > /var/www/html/index.html
+    <html>
+      <head>
+        <title>Welcome</title>
+      </head>
+      <body style="background-color: black; color: yellow; text-align: center; font-size: 24px; margin-top: 20%;">
+        barev im sireli Arevikin, es qez shat em sirum, du im hrashqn es $(hostname)
+      </body>
+    </html>
+    EOF
+  EOT
+}
+
 }
 
 
