@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "im-buckety-destroyi-terraformi-hamar"
+    bucket = "im-hrashali-github-pipliney-urrraaa"
     prefix = "terraform/state"
   }
 
