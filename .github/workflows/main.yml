@@ -6,7 +6,7 @@ on:
       - main   # run only when you push to main
 
 jobs:
-  terraform:
+  my-terraform:
     runs-on: ubuntu-latest
 
     steps:
