@@ -66,7 +66,7 @@ resource "google_compute_instance" "vm_instance" {
       apt-get install -y nginx
       systemctl enable nginx
       systemctl start nginx
-      echo "Hello my friends from $(hostname)" > /var/www/html/index.html
+      echo "barev im sireli Arevikin, es qez shat em sirum, du im hrashqn es $(hostname)" > /var/www/html/index.html
     EOT
   }
 }
