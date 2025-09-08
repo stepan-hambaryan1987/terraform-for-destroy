@@ -114,7 +114,7 @@ resource "google_compute_instance_template" "vm_template" {
       <head>
         <title>Welcome</title>
       </head>
-      <body style="background-color: black; color: yellow; text-align: center; font-size: 24px; margin-top: 20%;">
+      <body style="background-color: cyan; color: yellow; text-align: center; font-size: 24px; margin-top: 20%;">
         barev im sireli Arevikin, es qez shat em sirum, du im hrashqn es $(hostname)
       </body>
     </html>
