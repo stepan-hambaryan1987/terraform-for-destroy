@@ -181,23 +181,28 @@ resource "google_compute_health_check" "default" {
   }
 }
 
+resource "time_sleep" "wait_for_healthcheck" {
+  depends_on = [google_compute_health_check.default]
+  create_duration = "20s"
+}
+
 # ============================
-# 5. Backend Service
+# 5. Backend Service 
 # ============================
 resource "google_compute_backend_service" "default" {
-  name                            = "backend-service"
-  protocol                        = "HTTP"
-  port_name                       = "http"
-  timeout_sec                     = 10
-  health_checks                   = [google_compute_health_check.default.id]
-  connection_draining_timeout_sec = 0
+  name      = "backend-service"
+  protocol  = "HTTP"
+  port_name = "http"
+  timeout_sec = 10
+  health_checks = [google_compute_health_check.default.id]
 
   backend {
     group = google_compute_instance_group_manager.vm_group.instance_group
   }
 
-  depends_on = [google_compute_health_check.default]
+  depends_on = [time_sleep.wait_for_healthcheck]
 }
+
 
 # ============================
 # 6. URL Map LB
